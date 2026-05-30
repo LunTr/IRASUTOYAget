@@ -1,0 +1,41 @@
+{
+  "skill_name": "IRASUTOYAget",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我找一张猫的插图，要可爱的那种",
+      "expected_output": "将关键词翻译为日语「猫」，搜索 IRASUTOYA，展示搜索结果并下载一张猫的插图到本地",
+      "files": [],
+      "expectations": [
+        "模型将关键词翻译为日语（猫）",
+        "模型调用了搜索脚本 search_irasutoya.py",
+        "模型展示了搜索结果让用户选择或自动选择了最相关的一张",
+        "模型下载了图片并告知用户文件路径",
+        "下载的文件确实存在且是有效的图片"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "我在做一个关于公司季度汇报的PPT，需要一些商务风格的插图，比如开会、做报告、数据分析之类的，帮我找几张",
+      "expected_output": "将需求拆分为多个日语关键词（会議、プレゼン、データ分析等），分别搜索并展示结果，下载用户选择的插图",
+      "files": [],
+      "expectations": [
+        "模型将需求拆分为多个日语关键词",
+        "模型对每个关键词分别进行了搜索",
+        "模型展示了多组搜索结果",
+        "模型下载了至少一张图片"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need a cute illustration of a dog for my blog header, something from irasutoya style",
+      "expected_output": "将关键词翻译为日语「犬」，搜索 IRASUTOYA，下载一张狗的插图",
+      "files": [],
+      "expectations": [
+        "模型将英文关键词翻译为日语（犬）",
+        "模型调用了搜索脚本",
+        "模型下载了图片"
+      ]
+    }
+  ]
+}
