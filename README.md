@@ -11,18 +11,52 @@
 
 ## 安装
 
-### 方式一：手动安装（Claude Code）
+### 前置条件
 
-将 `IRASUTOYAget/` 文件夹复制到 Claude 的 skills 目录：
+- Python 3.10+
+- `requests` 和 `beautifulsoup4`
 
+```bash
+pip install requests beautifulsoup4
 ```
-Windows: %USERPROFILE%\.claude\skills\IRASUTOYAget\
-macOS/Linux: ~/.claude/skills/IRASUTOYAget/
+
+### 方式一：下载 .skill 文件安装（推荐）
+
+1. 从 [Releases](https://github.com/LunTr/IRASUTOYAget/releases) 下载最新的 `IRASUTOYAget.skill` 文件
+2. 将文件放到 Claude 的 skills 目录：
+
+```bash
+# Windows
+copy IRASUTOYAget.skill %USERPROFILE%\.claude\skills\
+
+# macOS / Linux
+cp IRASUTOYAget.skill ~/.claude/skills/
 ```
 
-### 方式二：项目内使用
+3. 重启 Claude Code，技能自动生效
 
-直接将 `IRASUTOYAget/` 文件夹放在你的项目目录中即可。
+### 方式二：克隆仓库安装
+
+```bash
+# Windows
+git clone https://github.com/LunTr/IRASUTOYAget.git %USERPROFILE%\.claude\skills\IRASUTOYAget
+
+# macOS / Linux
+git clone https://github.com/LunTr/IRASUTOYAget.git ~/.claude/skills/IRASUTOYAget
+```
+
+### 方式三：项目内使用
+
+将仓库克隆到你的项目目录中，Claude 会自动识别项目内的 `.claude/skills/` 下的技能：
+
+```bash
+cd your-project
+git clone https://github.com/LunTr/IRASUTOYAget.git .claude/skills/IRASUTOYAget
+```
+
+### 验证安装
+
+在 Claude Code 中输入 `/IRASUTOYAget`，如果出现技能说明则安装成功。
 
 ## 使用方法
 
@@ -50,7 +84,9 @@ I need a cute illustration of a dog
 4. **获取原图**：访问详情页，通过 `og:image` 元标签获取高清原图 URL
 5. **下载**：保存图片到本地
 
-## 脚本用法
+## 脚本独立使用
+
+也可以脱离 Claude 直接使用脚本：
 
 ```bash
 # 搜索（不下载）
@@ -74,14 +110,18 @@ python scripts/search_irasutoya.py "犬" --output ./images --index 2
 | `--index, -i` | 下载指定序号的结果（从 0 开始） |
 | `--json` | 以 JSON 格式输出结果 |
 
-## 依赖
+## 目录结构
 
-- Python 3.10+
-- `requests`
-- `beautifulsoup4`
-
-```bash
-pip install requests beautifulsoup4
+```
+IRASUTOYAget/
+├── SKILL.md                    # 技能定义文件
+├── README.md                   # 本文件
+├── requirements.txt            # Python 依赖
+├── scripts/
+│   └── search_irasutoya.py     # 搜索下载脚本
+├── evals/
+│   └── evals.json              # 测试用例
+└── output/                     # 下载的插图示例
 ```
 
 ## 示例输出
@@ -96,18 +136,6 @@ pip install requests beautifulsoup4
 
 下载：いろいろな模様の猫のイラスト
   -> ./output/いろいろな模様の猫のイラスト.jpg
-```
-
-## 目录结构
-
-```
-IRASUTOYAget/
-├── SKILL.md                    # 技能定义文件
-├── scripts/
-│   └── search_irasutoya.py     # 搜索下载脚本
-├── evals/
-│   └── evals.json              # 测试用例
-└── output/                     # 下载的插图示例
 ```
 
 ## 注意事项
